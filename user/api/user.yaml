@@ -1,0 +1,8 @@
+type: liu.api.service
+config_version: 3
+
+http:
+  rules:
+    - selector: user.UserService.Login
+      post: /api/user/login
+      body: "*"
