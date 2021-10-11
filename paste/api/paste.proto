@@ -1,0 +1,20 @@
+syntax = "proto3";
+package paste;
+option go_package = "pasteProject/paste/api/gen/go;pastepb";
+
+message PasteRequest {
+  string token = 1;
+  string things = 2;
+  string poster = 3;
+}
+
+message PasteResponse {
+  repeated string things = 1;
+  int32 status_code = 2;
+}
+
+service PasteService {
+  rpc Paste(PasteRequest) returns (PasteResponse);
+  rpc GetAllPaste(PasteRequest) returns (PasteResponse);
+  rpc DeleteAllPaste(PasteRequest) returns (PasteResponse);
+}
