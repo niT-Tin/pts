@@ -1,0 +1,12 @@
+type: liu.api.service
+config_version: 3
+
+http:
+  rules:
+    - selector: paste.PasteService.Paste
+      post: /api/paste
+      body: "*"
+    - selector: paste.PasteService.GetAllPaste
+      get: /api/paste/all
+    - selector: paste.PasteService.DeleteAllPaste
+      get: /api/paste/delete_all
