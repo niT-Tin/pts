@@ -54,7 +54,11 @@
         └── user.go
 ```
 
+## TODO
 
+- login achieve with jwt
+- password encrype
+- add Redis
 
 
 
