@@ -1,0 +1,19 @@
+syntax = "proto3";
+package user;
+option go_package = "pasteProject/user/api/gen/go;userpb";
+
+message UserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message UserResponse {
+  string token = 1;
+  int32 status_code = 2;
+  int32 expires_in = 3;
+}
+
+service UserService {
+  rpc Login(UserRequest) returns (UserResponse);
+//  rpc GetUser(UserRequest) returns (UserResponse);
+}
