@@ -40,7 +40,6 @@
 │   └── paste
 │       ├── paste.go
 │       └── transfer.go
-├── README1.md
 ├── README.md
 ├── repositories
 │   ├── paste_repo.go
@@ -64,6 +63,8 @@
         ├── transfer.go
         └── user.go
 ```
+
+
 
 ## TODO
 
