@@ -7,8 +7,8 @@ import (
 // Paste 粘帖结构体
 type Paste struct {
 	gorm.Model
-	Things string `json:"things,omitempty"`     // 粘帖的字符
-	Poster string `json:"poster" gorm:"unique"` // 粘帖者 相当于UserName
+	Things string `json:"things,omitempty"` // 粘帖的字符
+	Poster string `json:"poster"`           // 粘帖者
 }
 
 // User 用户结构体
