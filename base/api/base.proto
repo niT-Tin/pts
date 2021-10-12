@@ -1,0 +1,38 @@
+syntax = "proto3";
+package base;
+option go_package = "pasteProject/base/api/gen/go;basepb";
+
+message BaseRequest {
+  int32 code = 1;
+}
+
+message BaseResponse {
+  MySql mysql = 1;
+  Mongo mongo = 2;
+  Redis redis = 3;
+  int32 sig = 4;
+}
+
+message MySql {
+  string username = 1;
+  string password = 2;
+  string host = 3;
+  string port = 4;
+  string dbname = 5;
+  string dsn = 6;
+}
+
+message Mongo {
+  string username = 1;
+  string password = 2;
+}
+
+message Redis {
+  string username = 1;
+  string password = 2;
+  string dsn = 3;
+}
+
+service BaseService {
+  rpc GetEnv(BaseRequest) returns (BaseResponse);
+}
