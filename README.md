@@ -1,11 +1,22 @@
- # Content Structure
+# Content Structure
+
 ```
 .
 ├── base
-│   ├── base.go
-│   └── conf
-│       └── envs
-│           └── db.env
+│   ├── api
+│   │   ├── base.proto
+│   │   ├── base.sh
+│   │   └── gen
+│   │       └── go
+│   │           ├── base_grpc.pb.go
+│   │           └── base.pb.go
+│   ├── base
+│   │   └── base.go
+│   ├── conf
+│   │   └── envs
+│   │       ├── db.env
+│   │       └── test.env
+│   └── main.go
 ├── errs
 │   └── logerrs.go
 ├── gateway
@@ -13,7 +24,6 @@
 ├── go.mod
 ├── go.sum
 ├── LICENSE
-├── main.go
 ├── models
 │   └── paste.go
 ├── paste
@@ -30,6 +40,7 @@
 │   └── paste
 │       ├── paste.go
 │       └── transfer.go
+├── README1.md
 ├── README.md
 ├── repositories
 │   ├── paste_repo.go
@@ -59,6 +70,4 @@
 - login achieve with jwt
 - password encrype
 - add Redis
-
-
 
