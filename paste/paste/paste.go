@@ -2,6 +2,7 @@ package paste
 
 import (
 	"context"
+	"gorm.io/gorm"
 	"net/http"
 	"pasteProject/errs"
 	"pasteProject/models"
@@ -15,9 +16,13 @@ var (
 	errHandler errs.IErr
 )
 
+func Init(db *gorm.DB) {
+	paste = repositories.NewPasteRepo(db)
+	errHandler = errs.NewErrs(db)
+}
+
 func init() {
-	paste = repositories.NewPasteRepo(errs.GetDB())
-	errHandler = errs.NewErrs(errs.GetDB())
+	Init(errs.GetDB())
 }
 
 type Service struct {
@@ -25,6 +30,8 @@ type Service struct {
 }
 
 func (p *Service) Paste(ctx context.Context, pr *pastepb.PasteRequest) (*pastepb.PasteResponse, error) {
+	errs.Refresh()
+	Init(errs.GetDB())
 	err := paste.CreateP(P2MPaste(pr))
 	if err != nil {
 		errHandler.ReciteErrors(errs.Err{Message: "error creating paste",
@@ -35,6 +42,8 @@ func (p *Service) Paste(ctx context.Context, pr *pastepb.PasteRequest) (*pastepb
 }
 
 func (p *Service) GetAllPaste(ctx context.Context, pr *pastepb.PasteRequest) (*pastepb.PasteResponse, error) {
+	errs.Refresh()
+	Init(errs.GetDB())
 	var pb pastepb.PasteResponse
 	ps := paste.SelectPS()
 	if len(ps) == 0 {
@@ -47,6 +56,8 @@ func (p *Service) GetAllPaste(ctx context.Context, pr *pastepb.PasteRequest) (*p
 }
 
 func (p *Service) DeleteAllPaste(ctx context.Context, pr *pastepb.PasteRequest) (*pastepb.PasteResponse, error) {
+	errs.Refresh()
+	Init(errs.GetDB())
 	err := paste.DeletePS()
 	if err != nil {
 		errHandler.ReciteErrors(errs.Err{Message: "error deleting paste",
